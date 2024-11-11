@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Test</title>
+</head>
+<body>
+    <h1>CORS Test</h1>
+    <button onclick="testCORS()">Test CORS</button>
+    <button onclick="convertCurrency()">Convert Currency</button>
+    <div id="result"></div>
+
+    <script>
+        // GET Endpoint -- change it with your endpoint --
+        function testCORS() {
+            fetch('http://localhost:8082/mt-catalog/currency', {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerText = 'Success: ' + data;
+            })
+            .catch(error => {
+                document.getElementById('result').innerText = 'Error: ' + error;
+                console.error('Error:', error);
+            });
+        }
+        // POST Endpoint -- change it with your endpoint --
+        function convertCurrency() {
+            fetch('http://localhost:8082/mt-catalog/currency', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJJOHJ1NWZyYThCSDFycXlXbEMzZm9xeVNGV3h6d0hyeDdzdEctN2hHaEpvIn0.eyJleHAiOjE3MzA5MDI4MjcsImlhdCI6MTczMDgxNjQyNywianRpIjoiNzYzZGExYzItZDQ5MC00ZTBhLTg2YmMtZTZjNGU3Njc3OTUwIiwiaXNzIjoiaHR0cHM6Ly9hdXRoLW10LWRldmVsb3AuZGVudGFjYXJ0c2Nsb3VkLm5ldC9hdXRoL3JlYWxtcy9tdCIsInN1YiI6IjE3NzJmYThjLTNiNjktNGU5NS05MGJkLWY0ZDBkYzNmNjE5MCIsInR5cCI6IkJlYXJlciIsImF6cCI6Im10LW1vYmlsZSIsInNlc3Npb25fc3RhdGUiOiIyOGY1ODA1ZS1mODRjLTRjYjEtYjE1Ny00NWUxNTAwZTUyZmUiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1kZW50YWNhcnRzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsInNpZCI6IjI4ZjU4MDVlLWY4NGMtNGNiMS1iMTU3LTQ1ZTE1MDBlNTJmZSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6IkFiZGVscmFobWFuIFNoYWxhYnkiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhYmRlbHJhaG1hbi5zaGFsYWJ5QGRlbnRhY2FydHMuY29tIiwiZ2l2ZW5fbmFtZSI6IkFiZGVscmFobWFuIiwiZmFtaWx5X25hbWUiOiJTaGFsYWJ5IiwiZW1haWwiOiJhYmRlbHJhaG1hbi5zaGFsYWJ5QGRlbnRhY2FydHMuY29tIn0.iUNHGtmnyrV7Dt6xNu3nGEc7s0r7kYixAoV8OP2DBDNFWZtbiJf4U5mUfEpGXSq6O5HV-0VpM5I2EvcIQwjCOmJG2udSY_SnPD7kBB3kpEYwLRsbIucldafSh1FtX4DFSvGqsi2gjdIjSSjJOkU9NuAQYOelOm2wFeiUcag6yyHreGQpfKiUauI_vpcOU8zqrR9XtRp_H1GXafBZMBfslaYRYjbGMilgv6fu1Jw4_tFDr745Tt8tvU1eMIoGp8P1XU-iXrQ67CFO0LZ5PGNVctgvwe_yDIJSexORcpMlMqgPjPljc8UxSrsTr-U4oExYc8nk8EgzkW-fE5niXdsmbA'
+                },
+                body: JSON.stringify({
+                    from: "USD",
+                    to: "EGP"
+                })
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerText = 'Success: ' + data;
+            })
+            .catch(error => {
+                document.getElementById('result').innerText = 'Error: ' + error;
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
